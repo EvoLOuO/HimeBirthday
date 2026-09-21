@@ -1,9 +1,11 @@
+import { publicAsset } from "./assets.js";
+
 export const characterImages = {
-  default: "/avatar.png",
-  like: "/character/character-like.png",
-  gift: "/character/character-gift.png",
-  surprised: "/character/character-surprised.png",
-  birthday: "/character/character-birthday.png",
+  default: publicAsset("avatar.png"),
+  like: publicAsset("character/character-like.png"),
+  gift: publicAsset("character/character-gift.png"),
+  surprised: publicAsset("character/character-surprised.png"),
+  birthday: publicAsset("character/character-birthday.png"),
 };
 // Only public/avatar.png is needed. Expression images are optional enhancements.
 // Optional images load in the background; avatar.png stays visible until ready.

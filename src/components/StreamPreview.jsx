@@ -19,7 +19,7 @@ export default function StreamPreview({
     probe.src = optionalSource;
     return () => { probe.onload = null; probe.onerror = null; };
   }, [optionalSource, available, failed]);
-  const source = [available.includes(optionalSource) ? optionalSource : null, characterImages.default, "/avatar.png"]
+  const source = [available.includes(optionalSource) ? optionalSource : null, characterImages.default]
     .find(path => path && !failed.includes(path));
   return (
     <div className="stream-preview">

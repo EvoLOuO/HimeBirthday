@@ -1,3 +1,5 @@
+import { publicAsset } from "./assets.js";
+
 export const LIKE_GOAL = 20;
 export const GIFT_GOAL = 5;
 // Milliseconds: 3000 = 3 seconds, including the smooth fade-out.
@@ -90,7 +92,7 @@ export const twitchConfig = {
 };
 export const flinConfig = {
   name: "フリン",
-  image: "/flin/flin.png",
+  image: publicAsset("flin/flin.png"),
   imagePosition: "50% 50%",
   firstAppearanceLikeCount: 10,
   secondAppearanceGiftCount: 4,
