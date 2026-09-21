@@ -1,0 +1,445 @@
+.flin-stage {
+  position: absolute;
+  width: var(--flin-width);
+  right: var(--flin-right);
+  bottom: var(--flin-bottom);
+  z-index: 3;
+  text-align: center;
+  pointer-events: none;
+}
+.flin-character {
+  position: relative;
+}
+.flin-photo {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 1;
+  padding: 3px;
+  border: 2px solid #ffe2c1;
+  border-radius: 50%;
+  background: #9e7761;
+  box-shadow: 0 4px 16px #27182466;
+  overflow: hidden;
+  pointer-events: auto;
+  transition: box-shadow 0.2s;
+}
+.flin-photo img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+  object-position: var(--flin-image-position);
+  border-radius: 50%;
+}
+.flin-placeholder {
+  font-size: 36px;
+  line-height: 1;
+}
+.flin-photo:hover {
+  box-shadow: 0 0 18px #ffe2bc88;
+}
+.flin-photo:active {
+  transform: scale(0.96);
+}
+.flin-name {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: #332333cc;
+  color: #ffe4c5;
+  font-size: 10px;
+}
+.flin-peek .flin-character {
+  animation: flin-peek-in 0.6s ease-out both;
+}
+.flin-watching .flin-character {
+  animation: flin-peek-in 0.6s ease-out both;
+}
+.flin-leaving {
+  animation: flin-leave var(--flin-leave) ease-in both;
+}
+.flin-leaving .flin-photo {
+  pointer-events: none;
+  opacity: 1;
+}
+.flin-activating {
+  top: var(--flin-activationTop);
+  bottom: auto;
+}
+.flin-entering .flin-character {
+  animation: flin-approach var(--flin-approach) ease-in-out both;
+}
+.flin-event-switch {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 14px);
+  width: 148px;
+  padding: 9px;
+  border: 1px solid #efbfdf;
+  border-radius: 12px;
+  background: #513750;
+  box-shadow: 0 4px 0 #281e31;
+  color: #ffe3f2;
+}
+.flin-event-switch small {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 1px;
+  color: #eacaaa;
+}
+.flin-event-switch > span {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 5px;
+}
+.flin-event-switch.is-pressed {
+  transform: translateY(4px) scale(0.96);
+  box-shadow: 0 0 20px #ffd79180;
+  background: #765673;
+}
+.flin-paw {
+  position: absolute;
+  font-size: 32px;
+  left: 4px;
+  top: -31px;
+  transform: rotate(-25deg);
+  pointer-events: none;
+}
+.flin-pressing_button .flin-paw {
+  animation: flin-press var(--flin-press) ease-in-out both;
+}
+.flin-pressed .flin-paw {
+  transform: translate(-12px, -12px) rotate(-25deg);
+}
+.flin-birthday .flin-photo {
+  box-shadow: 0 0 18px #ffdb9a77;
+}
+.flin-birthday .flin-character {
+  animation: flin-celebrate 2s ease-in-out infinite;
+}
+.flin-crown {
+  position: absolute;
+  z-index: 1;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-10deg);
+  font-size: 30px;
+}
+.flin-response {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 8px);
+  width: max-content;
+  max-width: 145px;
+  font-size: 11px;
+  color: #573d46;
+}
+.flin-response > span {
+  display: block;
+  padding: 7px 10px;
+  border-radius: 12px;
+  background: #fff4df;
+  box-shadow: 0 4px 15px #30202b26;
+}
+.flin-activating .flin-response {
+  bottom: auto;
+  top: calc(100% + 8px);
+}
+.flin-love {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -12px;
+  font-style: normal;
+  font-size: 22px;
+  animation: flin-love var(--flin-tap) ease-out both;
+}
+@keyframes flin-peek-in {
+  from {
+    transform: translateY(calc(var(--flin-bottom) + 120px)) rotate(8deg);
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+    transform: translateY(-3px) rotate(-6deg);
+  }
+  to {
+    transform: translateY(0) rotate(0);
+  }
+}
+@keyframes flin-approach {
+  from {
+    transform: translate(100px, 70px) rotate(10deg);
+    opacity: 0;
+  }
+  60% {
+    transform: translate(0, 0) rotate(-5deg);
+    opacity: 1;
+  }
+  to {
+    transform: translate(0, 0) rotate(0);
+  }
+}
+@keyframes flin-press {
+  from {
+    transform: translate(20px, 36px) rotate(0);
+    opacity: 0;
+  }
+  45% {
+    opacity: 1;
+  }
+  to {
+    transform: translate(-12px, -12px) rotate(-25deg);
+    opacity: 1;
+  }
+}
+@keyframes flin-leave {
+  to {
+    transform: translateY(45px);
+    opacity: 0;
+  }
+}
+@keyframes flin-celebrate {
+  50% {
+    transform: translateY(-3px) rotate(2deg);
+  }
+}
+@keyframes flin-love {
+  from {
+    transform: translateY(0) scale(0.7);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-65px) scale(1.15);
+    opacity: 0;
+  }
+}
+@media (max-width: 600px) {
+  .flin-stage {
+    width: var(--flin-mobile-width);
+    right: var(--flin-mobile-right);
+    bottom: var(--flin-mobile-bottom);
+  }
+  .flin-activating {
+    top: var(--flin-mobile-activationTop);
+    bottom: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flin-stage,
+  .flin-stage .flin-character,
+  .flin-stage .flin-paw,
+  .flin-love {
+    animation: none;
+  }
+  .flin-leaving {
+    opacity: 0;
+  }
+  .flin-photo {
+    transition: none;
+  }
+}
+@media (max-width: 600px) and (max-height: 700px) {
+  .gift-goal p {
+    margin: 4px 0;
+    line-height: 1.6;
+  }
+  .gift-goal.completed {
+    padding: 10px;
+  }
+  .gift-goal.completed p {
+    display: none;
+  }
+  .gift-goal.completed > small,
+  .gift-goal.completed > span {
+    display: block;
+    line-height: 12px;
+  }
+  .gift-goal.completed .goal-lights {
+    margin: 6px 0;
+  }
+}
+
+/* The activation is a brief center-stage close-up; ordinary cameos stay small. */
+.flin-stage.flin-activating {
+  inset: 0;
+  width: 100%;
+  z-index: 8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 66px;
+  background: radial-gradient(ellipse at center, #2b20385c, #17101dcc);
+}
+.flin-activating .flin-character {
+  width: var(--flin-feature-size);
+  order: 1;
+  flex-shrink: 0;
+}
+.flin-activating .flin-photo {
+  padding: 5px;
+  border-width: 4px;
+  box-shadow:
+    0 0 0 9px #ffe5c214,
+    0 0 45px #ffd5ad44;
+}
+.flin-activating .flin-placeholder {
+  font-size: calc(var(--flin-feature-size) * 0.62);
+}
+.flin-activating .flin-name {
+  font-size: 16px;
+  padding: 5px 18px;
+  margin-top: 10px;
+}
+.flin-activating .flin-event-switch {
+  position: relative;
+  order: 2;
+  right: auto;
+  bottom: auto;
+  width: min(var(--flin-button-width), 75%);
+  padding: 18px 14px;
+  border-radius: 19px;
+  border-width: 2px;
+  box-shadow:
+    0 7px 0 #291827,
+    0 0 28px #e7a9d13b;
+}
+.flin-activating .flin-event-switch small {
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+.flin-activating .flin-event-switch > span {
+  font-size: 21px;
+  margin-top: 9px;
+}
+.flin-activating .flin-event-switch.is-pressed {
+  transform: translateY(7px) scale(0.96);
+  background: #99617e;
+  box-shadow: 0 0 45px #ffd39588;
+}
+.flin-scene-caption {
+  position: absolute;
+  top: max(95px, 15%);
+  left: 15px;
+  right: 15px;
+  color: #ffe3be;
+}
+.flin-scene-caption small {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: #d3b6ce;
+  margin-bottom: 9px;
+}
+.flin-scene-caption strong {
+  font-size: 17px;
+  font-weight: 500;
+}
+.flin-activating .flin-paw {
+  left: calc(50% - 98px);
+  top: calc(100% - 40px);
+  width: 100px;
+  height: 110px;
+  z-index: 2;
+  transform: translateY(83px) rotate(-12deg);
+}
+.flin-paw svg { display: block; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 0 3px #fff9e8) drop-shadow(0 5px 6px #28102cb3); }
+.flin-activating .flin-event-switch.is-pressed>span { padding-left: 45px; }
+.flin-pressing_button .flin-paw {
+  animation: flin-center-press var(--flin-press) ease-in-out both;
+}
+.flin-entering .flin-character {
+  animation: flin-center-enter var(--flin-approach) ease-in-out both;
+}
+.flin-looking .flin-photo {
+  transform: rotate(-6deg);
+  transition: transform 0.6s ease;
+}
+.flin-activating .flin-response {
+  top: auto;
+  bottom: 12%;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  max-width: 240px;
+}
+.flin-click-ring {
+  position: absolute;
+  inset: -8px;
+  border: 2px solid #ffdda5;
+  border-radius: 24px;
+  animation: flin-ring 1.4s ease-out both;
+}
+@keyframes flin-center-enter {
+  from {
+    opacity: 0;
+    transform: translate(130px, 180px) scale(0.45) rotate(12deg);
+  }
+  65% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1.05) rotate(-4deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(0);
+  }
+}
+@keyframes flin-center-press {
+  0% {
+    opacity: 0;
+    transform: translate(28px, -40px) rotate(15deg);
+  }
+  25% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(-12deg);
+  }
+  65% {
+    transform: translate(0, 25px) rotate(-12deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 83px) rotate(-12deg);
+  }
+}
+@keyframes flin-ring {
+  from {
+    opacity: 1;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.45);
+  }
+}
+@media (max-height: 650px) {
+  .flin-activating .flin-character {
+    width: min(var(--flin-feature-size), 140px);
+  }
+  .flin-scene-caption {
+    top: 70px;
+  }
+  .flin-activating .flin-response {
+    bottom: 9%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flin-entering .flin-character,
+  .flin-pressing_button .flin-paw,
+  .flin-click-ring {
+    animation: none;
+  }
+  .flin-looking .flin-photo {
+    transform: none;
+    transition: none;
+  }
+  .flin-click-ring {
+    opacity: 0.5;
+  }
+}

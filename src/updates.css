@@ -1,0 +1,401 @@
+/* Existing room/background styles remain in styles.css unchanged. */
+.avatar { transition: filter .25s ease; }
+.avatar.emotion-like { filter: drop-shadow(0 0 9px #fba7c744); }
+.avatar.emotion-gift { filter: drop-shadow(0 0 12px #ffd99b66); }
+.avatar.emotion-surprised { filter: drop-shadow(0 0 14px #e4c4ff66); }
+.avatar.emotion-birthday { filter: drop-shadow(0 0 17px #ffc7dd88); }
+.entry:after {
+  display: none;
+}
+.entry {
+  background: #19151f;
+}
+.launch-screen {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.app-icon {
+  width: 110px;
+  height: 110px;
+  background: #080809;
+  border-radius: 26px;
+  padding: 22px;
+  box-shadow: 0 12px 40px #0006;
+  border: 1px solid #ffffff16;
+  transition: transform 0.2s;
+}
+.app-icon:hover {
+  transform: translateY(-4px);
+}
+.app-icon svg {
+  width: 100%;
+  height: 100%;
+}
+.launch-screen h1 {
+  font-size: 21px;
+  margin: 20px 0 8px;
+}
+.launch-screen p,
+.discovery-heading p {
+  font-size: 12px;
+  color: #b6a7bd;
+}
+.discovery-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 25px;
+}
+.discovery-header svg {
+  width: 28px;
+  height: 28px;
+}
+.discovery-header button {
+  background: none;
+  font-size: 30px;
+  margin-right: auto;
+}
+.discovery-header strong {
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+.discovery-heading {
+  padding: 10px 28px 22px;
+}
+.discovery-heading small {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: #f0adc9;
+}
+.discovery-heading h1 {
+  font-size: 27px;
+  margin: 12px 0;
+}
+.room-card {
+  display: block;
+  margin: 0 26px;
+  width: calc(100% - 52px);
+  padding: 0;
+  overflow: hidden;
+  border-radius: 20px;
+  text-align: left;
+  background: #2c2332;
+  border: 1px solid #ffffff16;
+  transition: transform 0.2s;
+}
+.room-card:hover {
+  transform: translateY(-3px);
+}
+.room-thumbnail {
+  height: 290px;
+  position: relative;
+  overflow: hidden;
+}
+.room-thumbnail .stream-preview {
+  height: 530px;
+  transform: scale(0.75);
+  transform-origin: top center;
+  inset: 0 -16.67% auto;
+}
+.room-thumbnail > .live-badge {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+}
+.room-card-info {
+  padding: 20px;
+}
+.room-card-info > strong {
+  font-size: 21px;
+}
+.room-card-info > small {
+  display: block;
+  margin-top: 5px;
+  color: #ac9eb3;
+  font-size: 10px;
+}
+.room-card-info > p {
+  font-size: 12px;
+  color: #e5d1e2;
+}
+.room-enter {
+  display: block;
+  padding: 12px;
+  border-radius: 12px;
+  background: #f4b6d0;
+  color: #402a3c;
+  text-align: center;
+  font-size: 12px;
+  margin-top: 20px;
+}
+.gift-goal {
+  position: absolute;
+  right: 16px;
+  top: 112px;
+  width: 180px;
+  z-index: 4;
+  border: 1px solid #f7cade55;
+  border-radius: 14px;
+  background: #36273bea;
+  padding: 12px;
+  text-align: center;
+  animation: chat-in 0.4s ease;
+}
+.gift-goal > small {
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #fbd4a9;
+}
+.gift-goal p {
+  font-size: 10px;
+  line-height: 1.8;
+  margin: 8px 0;
+}
+.gift-goal strong {
+  font-size: 13px;
+  color: #ffd4e7;
+}
+.gift-goal > span {
+  font-size: 10px;
+  color: #e1c7df;
+}
+.goal-lights {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+.goal-lights i {
+  width: 15px;
+  height: 15px;
+  border: 1px solid #d7b5cd55;
+  border-radius: 50%;
+  background: #ffffff0b;
+}
+.goal-lights .lit {
+  background: #ffd1e5;
+  border-color: #fff1f8;
+  box-shadow: 0 0 12px #ff85c4;
+  animation: light-pop 0.5s ease;
+}
+.completed .goal-lights {
+  animation: goal-glow 1s ease-in-out 2;
+}
+.live:has(.gift-goal) .speech-anchor {
+  top: 37%;
+  text-align: left;
+  padding-left: 15px;
+}
+.live:has(.gift-goal) .speech {
+  font-size: 12px;
+  padding: 10px 12px;
+}
+.gift-effect {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 6;
+  pointer-events: none;
+  text-align: center;
+  font-size: 65px;
+  animation: gift-pop 1.6s ease both;
+}
+.gift-effect small {
+  display: block;
+  font-size: 12px;
+  white-space: nowrap;
+  text-shadow: 0 2px 8px #000;
+}
+.gift-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+}
+.gift-grid button span {
+  font-size: 26px;
+}
+.birthday-banner {
+  position: absolute;
+  top: 120px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 5;
+  font-size: 21px;
+  font-weight: 700;
+  color: #ffe1ed;
+  text-shadow: 0 0 20px #ef79ab;
+  animation: chat-in 0.5s ease;
+}
+.celebrating {
+  animation: stream-glow 2s ease-in-out 3;
+}
+.birthday-overlay {
+  overflow-y: auto;
+  justify-content: safe center;
+}
+.birthday-overlay p {
+  white-space: pre-line;
+  flex-shrink: 0;
+}
+.hearts {
+  left: auto;
+  right: 39px;
+  bottom: 136px;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.hearts span {
+  left: var(--x);
+  right: auto;
+  bottom: 0;
+  line-height: 1;
+  animation-fill-mode: both;
+  animation-name: live-heart-rise;
+  animation-timing-function: linear;
+  will-change: transform, opacity;
+}
+.chat-line {
+  flex-shrink: 0;
+  overflow-wrap: anywhere;
+}
+.chat {
+  height: 240px;
+  max-height: 240px;
+  mask-image: none;
+  gap: 7px;
+}
+.activity {
+  position: absolute;
+  left: 20px;
+  right: 85px;
+  bottom: 339px;
+  z-index: 3;
+  min-height: 16px;
+  font-size: 10px;
+  color: #ffe1ab;
+  pointer-events: none;
+}
+.on-air { bottom: 370px; }
+.featured-comment { border-left: 3px solid #ffd795; border-radius: 8px; padding: 5px 8px; background: #72502d70; }
+.featured-comment b { color: #ffe2ac; font-weight: 700; }
+.evol-spotlight { position: absolute; top: 112px; left: 20px; right: 20px; z-index: 7; border: 1px solid #f7d195; background: #392b3bf2; border-radius: 14px; padding: 12px 16px; box-shadow: 0 0 24px #ffca862b; pointer-events: none; animation: spotlight-in var(--spotlight-duration) ease both; }
+.evol-spotlight strong { display: block; color: #ffdf9b; font-size: 13px; margin-bottom: 5px; }
+.evol-spotlight span { font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
+@keyframes spotlight-in { 0% { opacity: 0; transform: translateX(30px); } 10%,85% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; transform: translateX(-15px); } }
+@media(prefers-reduced-motion:reduce) { .evol-spotlight { animation:none; } }
+@keyframes live-heart-rise {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(0) scale(0.45);
+  }
+  15% {
+    opacity: var(--opacity);
+    transform: translate(var(--curve), -65px) rotate(var(--rotation)) scale(1.1);
+  }
+  42% {
+    opacity: var(--opacity);
+    transform: translate(calc(var(--curve) * -0.7), -180px)
+      rotate(calc(var(--rotation) * -0.6)) scale(1);
+  }
+  70% {
+    opacity: 0.7;
+    transform: translate(var(--drift), -300px) rotate(var(--rotation))
+      scale(0.9);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(var(--drift) + var(--curve)), -420px)
+      rotate(calc(var(--rotation) * -1)) scale(0.6);
+  }
+}
+@keyframes light-pop {
+  0% {
+    transform: scale(0.6);
+  }
+  55% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes goal-glow {
+  50% {
+    filter: brightness(1.8);
+    transform: scale(1.05);
+  }
+}
+@keyframes gift-pop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 20px) scale(0.6);
+  }
+  20%,
+  65% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -25px) scale(0.9);
+  }
+}
+@keyframes stream-glow {
+  50% {
+    box-shadow: 0 0 45px #f7a7cb66;
+  }
+}
+@media (max-width: 600px) {
+  .room-thumbnail {
+    height: 270px;
+  }
+  .discovery-heading {
+    padding-bottom: 12px;
+  }
+  .room-card-info {
+    padding: 16px;
+  }
+  .gift-goal {
+    width: 168px;
+    right: 12px;
+  }
+  .birthday-overlay h1 {
+    font-size: 35px;
+  }
+  .birthday-overlay {
+    padding: 24px;
+  }
+  .birthday-overlay .birthday-star {
+    margin-bottom: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gift-effect {
+    animation: none;
+    transform: translateX(-50%);
+  }
+  .gift-goal,
+  .goal-lights .lit,
+  .completed .goal-lights,
+  .celebrating,
+  .birthday-banner {
+    animation: none;
+  }
+  .app-icon,
+  .room-card {
+    transition: none;
+  }
+  .hearts span {
+    animation-name: gentle-heart-rise;
+  }
+}
+@keyframes gentle-heart-rise {
+  0% { opacity: 0; transform: translateY(0); }
+  15% { opacity: .85; }
+  70% { opacity: .7; }
+  100% { opacity: 0; transform: translateY(-110px); }
+}

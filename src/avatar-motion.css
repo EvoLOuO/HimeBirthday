@@ -1,0 +1,11 @@
+.avatar-motion.avatar-idle { animation: none; }
+.avatar-track, .avatar-breath { width: 100%; height: 100%; transform-origin: 50% 90%; }
+.avatar-track { transform: translate(var(--look-x, 0px), var(--look-y, 0px)) rotate(var(--look-tilt, 0deg)); transition: transform .7s cubic-bezier(.2,.7,.3,1); }
+.avatar-motion.motion-enabled { animation: avatar-sway var(--sway-duration) ease-in-out infinite; transform-origin: 50% 95%; }
+.motion-enabled .avatar-breath { animation: avatar-breathe var(--breath-duration) ease-in-out infinite; }
+.avatar-motion .avatar img { user-select: none; -webkit-user-drag: none; }
+@keyframes avatar-sway { 0%,100% { transform: rotate(calc(var(--sway-angle) * -.5)) translateY(0); } 50% { transform: rotate(var(--sway-angle)) translateY(var(--float-y)); } }
+@keyframes avatar-breathe { 0%,100% { transform: scale(1,1); } 50% { transform: scale(1.003,var(--breath-scale)); } }
+/* Keep a gentle breathing cue when the OS reduces motion, without rotation or pointer tracking. */
+@keyframes avatar-gentle-breathe { 0%,100% { transform: translateY(0) scaleY(1); } 50% { transform: translateY(-3px) scaleY(1.01); } }
+@media(prefers-reduced-motion:reduce) { .avatar-motion.motion-enabled { animation: none; } .avatar-motion .avatar-breath { animation: none; } .avatar-motion.motion-enabled .avatar-breath { animation: avatar-gentle-breathe 4s ease-in-out infinite; } .avatar-motion .avatar-track { transform: none; transition: none; } }

@@ -1,0 +1,11 @@
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.jsx';
+import './styles.css';
+import './updates.css';
+import './flin.css';
+import './birthday-effects.css';
+import './avatar-motion.css';
+import './unboxing.css';
+import './ending.css';
+createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>);
