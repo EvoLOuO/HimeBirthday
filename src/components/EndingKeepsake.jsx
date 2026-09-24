@@ -6,8 +6,13 @@ import StreamPreview from "./StreamPreview.jsx";
 export default function EndingKeepsake({ sourceFrame }) {
   const [furinVisible, setFurinVisible] = useState(false);
   const [imageFailed, setImageFailed] = useState(false);
+  const [furinPetted, setFurinPetted] = useState(false);
   const photoRef = useRef(null);
   const headingRef = useRef(null);
+  const furinRef = useRef(null);
+  useEffect(() => {
+    if (furinPetted) furinRef.current?.scrollIntoView?.({ block: "center", behavior: "auto" });
+  }, [furinPetted]);
   useLayoutEffect(() => {
     if (window.scrollY > 0) window.scrollTo(0, 0);
     const photo = photoRef.current;
@@ -41,11 +46,12 @@ export default function EndingKeepsake({ sourceFrame }) {
           </div>
           <figcaption><small>TIKTOK → TWITCH · A LITTLE BIRTHDAY MEMORY</small><h2>{birthday.streamerName}’s<br/>birthday live</h2><p>{ending.keepsakeCaption}</p><span>with love, {birthday.senderName} ♡</span></figcaption>
         </figure>
-        {furinVisible && <aside className="farewell-furin" aria-label="フリンが「またね」の紙をくわえて顔を出しています" role="status">
-          <div className="farewell-furin-photo">{imageFailed ? <span className="farewell-dog-fallback" role="img" aria-label="フリン">🐶</span> : <img src={flinConfig.image} alt={flinConfig.name} style={{ objectPosition: flinConfig.imagePosition }} onError={() => setImageFailed(true)}/>}</div>
-          <span className="furin-paper"><i aria-hidden="true"/>{ending.furinNote}<small>♡</small></span>
+        {furinVisible && <div ref={furinRef} className={`farewell-furin ${furinPetted ? "is-petted" : ""}`} aria-label={furinPetted ? ending.furinPettedNote : ending.furinHint} role="button" aria-pressed={furinPetted} tabIndex={0} onClick={() => { setFurinPetted(true); setImageFailed(false); }} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setFurinPetted(true); setImageFailed(false); } }}>
+          <div className="farewell-furin-photo">{imageFailed ? <span className="farewell-dog-fallback" role="img" aria-label="フリン">🐶</span> : <img src={furinPetted ? ending.furinSecondImage : flinConfig.image} alt={furinPetted ? `${flinConfig.name}が振り返りました` : flinConfig.name} style={{ objectPosition: flinConfig.imagePosition }} onError={() => setImageFailed(true)}/>}</div>
+          <span className="furin-paper"><i aria-hidden="true"/>{furinPetted ? ending.furinPettedNote : ending.furinNote}<small>♡</small></span>
+          {!furinPetted && <span className="furin-hint">{ending.furinHint}</span>}
           <span className="farewell-furin-name">FURIN</span>
-        </aside>}
+        </div>}
       </div>
       <p className="ending-real-gift">{ending.realGiftReminder}</p>
       <span className="ending-last-heart" aria-hidden="true">♡</span>

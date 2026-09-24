@@ -79,6 +79,9 @@ export const endingConfig = {
   keepsakeCaption: "一緒に過ごした、特別な日。",
   realGiftReminder: "続きは、画面の外で。EvoL からのプレゼントをチェックしてみてね。",
   furinNote: "またね",
+  furinSecondImage: publicAsset("flin/furin123.jpg"),
+  furinHint: "フリンをなでてみて 🐾",
+  furinPettedNote: "食べるために生きる",
 };
 // Twitch 模擬觀眾數及聊天室速度，毫秒為單位。
 export const twitchConfig = {
