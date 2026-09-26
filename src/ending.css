@@ -27,3 +27,11 @@
 .farewell-furin.is-petted .farewell-furin-photo img{object-fit:contain}
 .farewell-furin.is-petted .furin-paper{position:relative;display:block;top:auto;left:auto;min-width:0;max-width:100%;margin:15px auto 0;padding:14px 20px;transform:rotate(-2deg);font-size:clamp(17px,5vw,23px);letter-spacing:1px;white-space:normal}
 .farewell-furin.is-petted .farewell-furin-name{right:12px;top:-10px}
+.keepsake-date {
+  display: block;
+  margin: -5px 0 14px;
+  font-family: Georgia, serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #b17a96;
+}

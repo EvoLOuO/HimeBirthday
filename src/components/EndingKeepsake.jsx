@@ -44,7 +44,7 @@ export default function EndingKeepsake({ sourceFrame }) {
             <span className="keepsake-photo-label">HAPPY BIRTHDAY ♡</span>
             <span className="keepsake-sparkle" aria-hidden="true">✦</span>
           </div>
-          <figcaption><small>TIKTOK → TWITCH · A LITTLE BIRTHDAY MEMORY</small><h2>{birthday.streamerName}’s<br/>birthday live</h2><p>{ending.keepsakeCaption}</p><span>with love, {birthday.senderName} ♡</span></figcaption>
+          <figcaption><small>TIKTOK → TWITCH · A LITTLE BIRTHDAY MEMORY</small><h2>{birthday.streamerName}’s<br/>birthday live</h2><time className="keepsake-date">09 · 27</time><p>{ending.keepsakeCaption}</p><span>with love, {birthday.senderName} ♡</span></figcaption>
         </figure>
         {furinVisible && <div ref={furinRef} className={`farewell-furin ${furinPetted ? "is-petted" : ""}`} aria-label={furinPetted ? ending.furinPettedNote : ending.furinHint} role="button" aria-pressed={furinPetted} tabIndex={0} onClick={() => { setFurinPetted(true); setImageFailed(false); }} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setFurinPetted(true); setImageFailed(false); } }}>
           <div className="farewell-furin-photo">{imageFailed ? <span className="farewell-dog-fallback" role="img" aria-label="フリン">🐶</span> : <img src={furinPetted ? ending.furinSecondImage : flinConfig.image} alt={furinPetted ? `${flinConfig.name}が振り返りました` : flinConfig.name} style={{ objectPosition: flinConfig.imagePosition }} onError={() => setImageFailed(true)}/>}</div>
