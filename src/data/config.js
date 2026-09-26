@@ -36,6 +36,17 @@ export const unboxingConfig = {
   finalMessage: "EvoL からの本当のプレゼントを、実際に確認してみてね。何が入っているかは、開けてからのお楽しみ♡",
 };
 export const tiktokConfig = { viewers: 1568 };
+// EvoL 禮盒裡的兩份實體禮物，文字可在這裡修改。
+export const realGiftConfig = {
+  title: "ふたりに、ひとつずつ。",
+  intro: "ひめにゃにも、フリンにも。何が届いたかは、実際に見てからのお楽しみ。",
+  revealReply: "えっ、私とフリンにひとつずつ！？ヒントだけ見てみる？",
+  continueLabel: "本物のプレゼントを見に行く →",
+  gifts: [
+    { id: "desk", recipient: "ひめにゃへ", title: "昇降デスク", hint: "配信中の姿勢を変えられるようになるもの。立ったり座ったり、好きな高さで過ごせるよ。", icon: "？", reply: "配信がもっと快適になるヒントだね！", message: "本物を見たら、好きな高さで使ってみてね。", chat: { username: "miichan", message: "これは実際に見てからのお楽しみだね！" } },
+    { id: "mat", recipient: "フリンへ", title: "ペットへの贈りもの", hint: "寒い日に、フリンがいつでもぬくぬくできる場所。", icon: "？", reply: "フリンにもプレゼント！ヒントはぬくぬくだね〜♡", message: "本物を見つけたら、フリンの好きな場所に置いてあげてね。", chat: { username: "ocha", message: "フリンの分は実物を見てのお楽しみ♡" } },
+  ],
+};
 // 生日慶祝後：兩段道別 → 淡出下播 → 前往 Twitch。
 export const handoffConfig = {
   farewellLineMs: 4200,

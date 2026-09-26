@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import StreamPreview from "./StreamPreview.jsx";
 import { birthdayConfig as birthday } from "../data/birthday.js";
-import { unboxingConfig as config, endingConfig } from "../data/config.js";
+import { unboxingConfig as config, endingConfig, realGiftConfig } from "../data/config.js";
 import useTwitchChat from "./useTwitchChat.js";
 import LetterCard from "./LetterCard.jsx";
 import EndingKeepsake from "./EndingKeepsake.jsx";
+import RealGifts from "./RealGifts.jsx";
 
 export function TwitchMark() {
   return <svg viewBox="0 0 24 26" aria-hidden="true"><path fill="currentColor" d="M3 0 0 5v17h6v4l4-4h5l9-9V0H3Zm19 12-4 4h-6l-4 4v-4H3V2h19v10Z"/><path fill="currentColor" d="M10 5h2v7h-2zm6 0h2v7h-2z"/></svg>;
@@ -18,6 +19,8 @@ export default function TwitchRoom({ deliveries }) {
   const [bubble, setBubble] = useState({ id: 0, text: config.intro, duration: 4000 });
   const [reaction, setReaction] = useState(0);
   const [hasOpenedGift, setHasOpenedGift] = useState(false);
+  const [selectedGift, setSelectedGift] = useState(null);
+  const [openedGifts, setOpenedGifts] = useState([]);
   const [farewellComplete, setFarewellComplete] = useState(false);
   const [farewellLines, setFarewellLines] = useState([]);
   const titleRef = useRef(null);
@@ -90,7 +93,7 @@ export default function TwitchRoom({ deliveries }) {
     setBubble(null);
     setStage("ENDED");
   };
-  const titles = { AUDIENCE: "みんなからの贈りもの", DESK: "最後は、EvoL から。", CARD: "一通ずつ、大切に。", GIFT: "もうひとつの、ひみつ。", FINAL: config.finalTitle };
+  const titles = { AUDIENCE: "みんなからの贈りもの", DESK: "最後は、EvoL から。", CARD: "一通ずつ、大切に。", GIFT: "もうひとつの、ひみつ。", REAL_GIFTS: realGiftConfig.title, FINAL: config.finalTitle };
   if (stage === "ENDED") return <EndingKeepsake sourceFrame={endingFrame.current}/>;
   return <main className={`twitch-page ${stage === "FINAL" ? "twitch-farewell" : ""}`}>
     <header className="twitch-nav"><div className="twitch-wordmark"><TwitchMark/> Twitch</div><span>BIRTHDAY UNBOXING</span><div className="twitch-user">h</div></header>
@@ -128,8 +131,17 @@ export default function TwitchRoom({ deliveries }) {
         </>}
         {stage === "GIFT" && <>
           <p className="unboxing-subtitle">From {birthday.senderName}<br/>{birthday.realGiftMessage}</p>
-          <button className="evol-parcel" aria-label="EvoL のプレゼントを開く" onClick={() => { setHasOpenedGift(true); move("FINAL", "えっ、実物があるの！？見にいかなきゃ！"); }}><span className="parcel-bow">୨୧</span><span className="parcel-box"><i/><b>for you ♡</b></span><span className="object-hint">TAP TO UNWRAP</span></button>
+          <button className="evol-parcel" aria-label="EvoL のプレゼントを開く" onClick={() => { setHasOpenedGift(true); move("REAL_GIFTS", realGiftConfig.revealReply); }}><span className="parcel-bow">୨୧</span><span className="parcel-box"><i/><b>for you ♡</b></span><span className="object-hint">TAP TO UNWRAP</span></button>
         </>}
+        {stage === "REAL_GIFTS" && <RealGifts selected={selectedGift} opened={openedGifts} onSelect={gift => {
+          setSelectedGift(gift.id);
+          setOpenedGifts(old => old.includes(gift.id) ? old : [...old, gift.id]);
+          setReaction(value => value + 1);
+          setBubble({ id: Date.now(), text: gift.reply, duration: 4200 });
+          if (!openedGifts.includes(gift.id)) addMessage(gift.chat.username, gift.chat.message);
+        }} onContinue={() => {
+          if (realGiftConfig.gifts.every(gift => openedGifts.includes(gift.id))) move("FINAL", "本物のプレゼントも、確認してみてね♡");
+        }}/>} 
         {stage === "FINAL" && <>
           <div className="real-gift-icon" aria-hidden="true">🎁<span>↗</span></div><small className="real-gift-label">YOUR REAL GIFT IS WAITING</small>
           <p className="real-gift-message">{config.finalMessage}</p><p className="letter-signature">From {birthday.senderName} ♡</p>

@@ -8,4 +8,5 @@ import './birthday-effects.css';
 import './avatar-motion.css';
 import './unboxing.css';
 import './ending.css';
+import './real-gifts.css';
 createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>);
